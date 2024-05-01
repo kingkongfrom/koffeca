@@ -1,8 +1,20 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AppLayout from "./layouts/AppLayout";
+import LandingPage from "./pages/LandingPage";
+import Error from "./ui/Error"
+
 function App() {
+    const router = createBrowserRouter([
+        {
+            element: <AppLayout/>,
+            errorElement: <Error/>,
+            children: [
+                { path: "/", element: <LandingPage/> }
+            ]
+        }
+    ]);
     return (
-        <h1 className="text-3xl">
-            Hello world!
-        </h1>
+        <RouterProvider router={router}/>
     );
 }
 
