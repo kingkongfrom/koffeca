@@ -1,13 +1,10 @@
-import Sidebar from "../ui/Sidebar.jsx";
+import { Outlet } from "react-router-dom";
 
 const AdminPage = () => {
     return (
-        <div className="flex">
-            <div className="border-stone-150 bg-colorPrimary150  min-h-[640px] w-[80px] border-r-[1px] md:h-dvh md:w-[300px]">
-                <Sidebar />
-            </div>
+        <div>
             <div className="bg-colorPrimary100 h-dvh flex-1 flex-grow">
-                {/* Content for the right div */}
+                <Outlet />
             </div>
         </div>
     );
