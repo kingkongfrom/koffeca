@@ -4,7 +4,7 @@ import reactRefresh from "@vitejs/plugin-react-refresh";
 
 export default defineConfig({
     plugins: [react(), reactRefresh()],
-    css: {
-        postcss: "./postcss.config.js",
+    server: {
+        host: true,
     },
 });
