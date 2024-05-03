@@ -53,8 +53,8 @@ const Navigation = ({ color, backgroundColor }) => {
             {showMobileMenu && isMobile && (
                 <div
                     className="bg-colorPrimary fixed right-0 top-0 z-50 flex min-h-screen w-full translate-x-0
-                     transform items-center justify-center bg-stone-800 bg-opacity-50 shadow-lg
-                     backdrop-blur-lg"
+                     transform items-center justify-center bg-stone-800 bg-opacity-50 font-serif
+                     shadow-lg backdrop-blur-lg"
                 >
                     <div className="mb-[150px] flex flex-col gap-4 text-center">
                         <NavLink
@@ -74,13 +74,13 @@ const Navigation = ({ color, backgroundColor }) => {
                             Tienda
                         </NavLink>
                         <NavLink
-                            to="#"
+                            to="/varieties"
                             className={`text-2xl ${
                                 showMobileMenu ? "opacity-100" : "opacity-0"
                             }`}
                             onClick={closeMobileMenu}
                         >
-                            Contacto
+                            Variedades
                         </NavLink>
                         <NavLink
                             to="/admin"
@@ -103,15 +103,15 @@ const Navigation = ({ color, backgroundColor }) => {
             )}
             {!isMobile && (
                 <Fragment>
-                    <div className="text-md flex gap-24">
+                    <div className="text-md flex gap-24 font-serif">
                         <NavLink to="/" className="">
                             Inicio
                         </NavLink>
                         <NavLink to="/store" className="">
                             Tienda
                         </NavLink>
-                        <NavLink to="#" className="">
-                            Contacto
+                        <NavLink to="/varieties" className="">
+                            Variedades
                         </NavLink>
                     </div>
                     <div>

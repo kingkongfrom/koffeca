@@ -11,16 +11,21 @@ const Search = ({ onSearch }) => {
     };
 
     return (
-        <div className="flex justify-center px-6 md:px-16">
-            <div className="mt-3 flex w-full items-center justify-center rounded-full border border-gray-300 bg-white md:max-w-[500px]">
+        <div className=" flex h-12 items-center justify-center border-l border-stone-300 bg-stone-200 px-6 md:px-16">
+            <div
+                className="mt-1 flex items-center justify-center rounded-full border border-gray-300 bg-white px-2
+            focus-within:ring-2 focus-within:ring-blue-300 md:w-full md:max-w-[500px]"
+            >
                 <input
                     type="text"
                     placeholder="Search..."
                     value={searchQuery}
                     onChange={handleInputChange}
-                    className="w-full rounded-full px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-full px-4 py-1 text-gray-700 focus:outline-none"
                 />
-                <FaSearch size={20} className="ml-2 mr-6 text-gray-500" />
+                <div className="ml-4">
+                    <FaSearch size={15} className="mr-2 text-gray-500" />
+                </div>
             </div>
         </div>
     );

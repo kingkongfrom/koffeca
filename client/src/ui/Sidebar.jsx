@@ -1,8 +1,9 @@
 import { useIsMobile } from "../hooks/useIsMobile.js";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
     const isMobile = useIsMobile();
+    const location = useLocation();
     const navItems = [
         { name: "DASHBOARD", path: "/admin/dashboard" },
         { name: "INVENTORY", path: "/admin/inventory" },
@@ -11,14 +12,18 @@ const Sidebar = () => {
     ];
 
     return (
-        <div className="flex h-full flex-col">
-            <ul className="flex flex-col divide-y divide-stone-200 border-b-[1px]">
+        <div className="flex min-h-[580px] flex-col bg-stone-200 md:min-h-full">
+            <header className="flex h-12 w-auto items-center justify-center border-b border-b-stone-300 text-[10px] font-semibold md:text-[17px]">
+                ADMIN PANEL
+            </header>
+            <ul className="flex flex-col divide-y divide-stone-300">
                 {navItems.map((item, index) => (
                     <li key={index}>
                         <Link
                             to={item.path}
-                            className="flex cursor-pointer justify-center py-4 tracking-wide transition-colors duration-300 hover:bg-stone-100
-                        md:justify-start md:px-7"
+                            className={`flex cursor-pointer justify-center py-4 tracking-wide 
+                            transition-colors duration-300 md:justify-start md:px-7 
+                            ${location.pathname === item.path ? "bg-stone-100" : ""}`}
                         >
                             {!isMobile ? (
                                 item.name
@@ -34,4 +39,5 @@ const Sidebar = () => {
         </div>
     );
 };
+
 export default Sidebar;

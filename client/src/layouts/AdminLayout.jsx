@@ -1,24 +1,27 @@
+// AdminLayout.jsx
 import Navigation from "../ui/Navigation.jsx";
-import { Outlet } from "react-router-dom";
 import Sidebar from "../ui/Sidebar.jsx";
 import Search from "../features/admin/Search.jsx";
+import AdminFooter from "../features/admin/AdminFooter.jsx";
+import { Outlet } from "react-router-dom";
 
 const AdminLayout = () => {
     return (
-        <div>
+        <div className="flex flex-col">
             <Navigation color="text-stone-100" backgroundColor="bg-stone-800" />
 
-            <div className="flex h-screen overflow-hidden">
-                <div className="border-stone-150 bg-colorPrimary150  min-h-[640px] w-[80px] border-r-[1px] md:h-dvh md:w-[300px]">
+            <div className="flex flex-1 overflow-hidden">
+                <div className="border-stone-150 w-[80px] border-r-[1px] bg-stone-50 md:w-[300px]">
                     <Sidebar />
                 </div>
-                <div className="w-full">
+                <div className="flex w-full flex-col">
                     <Search />
-                    <main className="p-6">
+                    <main className="flex-1 overflow-hidden rounded">
                         <Outlet />
                     </main>
                 </div>
             </div>
+            <AdminFooter />
         </div>
     );
 };

@@ -2,6 +2,8 @@ const app = require("./app");
 const dotenv = require("dotenv");
 const { connect } = require("mongoose");
 
+const { testConnection } = require("./services/supabase");
+
 dotenv.config({ path: "./.env" });
 
 const DB = process.env.DATABASE.replace("<PASSWORD>", process.env.DATABASE_PASSWORD);
@@ -14,4 +16,8 @@ app.listen(port, () => {
 
 connect(DB).then(() => {
     console.log("Database connection successful");
+});
+
+testConnection().then(() => {
+    console.log("Successfully connected to Supabase!");
 });

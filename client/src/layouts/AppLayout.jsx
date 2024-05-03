@@ -1,19 +1,14 @@
 import { Outlet } from "react-router-dom";
-import Hero from "../ui/Hero.jsx";
-
-function Header() {
-    return null;
-}
+import Navigation from "../ui/Navigation.jsx";
 
 const AppLayout = () => {
     return (
-        <div className="flex flex-col">
-            <Hero />
-            <div className="flex-grow overflow-hidden">
-                <main className="mx-auto min-h-screen max-w-5xl overflow-auto">
-                    <Outlet />
-                </main>
-            </div>
+        <div>
+            <Navigation color="text-stone-100" backgroundColor="bg-stone-800" />
+
+            <main className="mx-auto min-h-screen overflow-auto">
+                <Outlet />
+            </main>
         </div>
     );
 };

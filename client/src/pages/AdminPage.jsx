@@ -2,10 +2,8 @@ import { Outlet } from "react-router-dom";
 
 const AdminPage = () => {
     return (
-        <div>
-            <div className="bg-colorPrimary100 h-dvh flex-1 flex-grow">
-                <Outlet />
-            </div>
+        <div className="m-3 min-h-[510px] flex-1 rounded-lg bg-stone-100 p-6 md:min-h-dvh">
+            <Outlet />
         </div>
     );
 };
