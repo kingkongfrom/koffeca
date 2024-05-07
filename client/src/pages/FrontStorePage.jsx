@@ -1,25 +1,44 @@
+import React from "react";
 import { getAllCoffee } from "../services/apiCoffee.js";
 import Card from "../ui/Card.jsx";
 import { useLoaderData } from "react-router-dom";
 
 const FrontStorePage = () => {
-    const { coffee } = useLoaderData(); // Extract the coffee array from the object
+    const { coffee } = useLoaderData() || { coffee: [] }; // Ensure coffee is initialized
 
-    // Check if coffee is an array before mapping over it
+    // Ensure coffee is an array before further processing
     if (!Array.isArray(coffee)) {
         console.error("Coffee data is not an array:", coffee);
         return null;
     }
 
+    // Group coffee by name
+    const groupedByName = coffee.reduce((acc, curr) => {
+        acc[curr.name] = acc[curr.name] || [];
+        acc[curr.name].push(curr);
+        return acc;
+    }, {});
+
+    // Calculate price range for each unique product
+    const productsWithPriceRange = Object.entries(groupedByName).map(
+        ([name, products]) => {
+            const prices = products.map((product) => product.price);
+            const minPrice = Math.min(...prices);
+            const maxPrice = Math.max(...prices);
+            return { name, priceRange: [minPrice, maxPrice] };
+        },
+    );
+
+    // Render unique items
     return (
         <div className="flex w-full items-center justify-center">
-            <div className="mt-8 grid grid-cols-1 gap-9 sm:grid-cols-2 md:max-w-[1400px] md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
-                {coffee.map((item) => (
-                    <div
-                        key={item._id}
-                        className="w-full cursor-pointer md:w-auto"
-                    >
-                        <Card item={item} />
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:max-w-[1400px] md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
+                {productsWithPriceRange.map((product) => (
+                    <div key={product.name}>
+                        <Card
+                            item={groupedByName[product.name][0]} // Take the first item for display
+                            priceRange={product.priceRange}
+                        />
                     </div>
                 ))}
             </div>

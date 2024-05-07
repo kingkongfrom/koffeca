@@ -1,18 +1,20 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LandingLayout from "./layouts/LandingLayout.jsx";
+import LandingLayout from "./layouts/LandingLayout";
 import LandingPage from "./pages/LandingPage";
 import Error from "./ui/Error";
-import StoreLayout from "./layouts/StoreLayout.jsx";
-import FrontStorePage from "./pages/FrontStorePage.jsx";
-import AdminLayout from "./layouts/AdminLayout.jsx";
-import AdminPage from "./pages/AdminPage.jsx";
-import Dashboard from "./features/admin/Dashboard.jsx";
-import Inventory from "./features/admin/Inventory.jsx";
-import Products from "./features/admin/Products.jsx";
-import Settings from "./features/admin/Settings.jsx";
-import VarietiesPage from "./pages/VarietiesPage.jsx";
-import AppLayout from "./layouts/AppLayout.jsx";
-import { loader as coffeeLoader } from "./pages/FrontStorePage";
+import StoreLayout from "./layouts/StoreLayout";
+import FrontStorePage, { loader as coffeeLoader } from "./pages/FrontStorePage";
+import AdminLayout from "./layouts/AdminLayout";
+import AdminPage from "./pages/AdminPage";
+import Dashboard from "./features/admin/Dashboard";
+import Inventory from "./features/admin/inventory/Inventory";
+import Products from "./features/admin/Products/Products";
+import Settings from "./features/admin/Settings";
+import ProducersPage from "./pages/ProducersPage";
+import AppLayout from "./layouts/AppLayout";
+import CreateProduct, {
+    action as createProduct,
+} from "./features/admin/Products/CreateProduct";
 
 function App() {
     const router = createBrowserRouter([
@@ -24,7 +26,7 @@ function App() {
         {
             element: <AppLayout />,
             errorElement: <Error />,
-            children: [{ path: "/varieties", element: <VarietiesPage /> }],
+            children: [{ path: "/varieties", element: <ProducersPage /> }],
         },
         {
             element: <StoreLayout />,
@@ -46,8 +48,22 @@ function App() {
                     element: <AdminPage />,
                     children: [
                         { path: "dashboard", element: <Dashboard /> },
-                        { path: "inventory", element: <Inventory /> },
-                        { path: "products", element: <Products /> },
+                        {
+                            path: "inventory",
+                            loader: coffeeLoader,
+                            element: <Inventory />,
+                        },
+                        {
+                            path: "products",
+                            loader: coffeeLoader,
+                            element: <Products />,
+                        },
+                        {
+                            path: "product/new",
+                            loader: coffeeLoader,
+                            action: createProduct,
+                            element: <CreateProduct />,
+                        },
                         { path: "settings", element: <Settings /> },
                     ],
                 },

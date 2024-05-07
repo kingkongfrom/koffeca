@@ -1,4 +1,3 @@
-// AdminLayout.jsx
 import Navigation from "../ui/Navigation.jsx";
 import Sidebar from "../ui/Sidebar.jsx";
 import Search from "../features/admin/Search.jsx";
@@ -7,7 +6,7 @@ import { Outlet } from "react-router-dom";
 
 const AdminLayout = () => {
     return (
-        <div className="flex flex-col">
+        <div className="flex min-h-screen flex-col">
             <Navigation color="text-stone-100" backgroundColor="bg-stone-800" />
 
             <div className="flex flex-1 overflow-hidden">

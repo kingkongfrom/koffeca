@@ -12,7 +12,7 @@ const Sidebar = () => {
     ];
 
     return (
-        <div className="flex min-h-[580px] flex-col bg-stone-200 md:min-h-full">
+        <div className="min-h-auto flex flex-col bg-stone-200 md:min-h-full">
             <header className="flex h-12 w-auto items-center justify-center border-b border-b-stone-300 text-[10px] font-semibold md:text-[17px]">
                 ADMIN PANEL
             </header>

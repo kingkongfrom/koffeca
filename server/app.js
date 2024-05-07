@@ -5,27 +5,21 @@ const AppError = require("./utils/appError");
 const cors = require("cors");
 
 const app = express();
+app.use(express.json());
 
-
-app.use(cors({
-    origin: [""],
-    methods: ["POST", "GET"],
-    credentials: true
-}));
+app.use(cors());
 
 if (process.env.NODE_ENV === "development") {
-    app.use(morgan("dev"));
+  app.use(morgan("dev"));
 }
 
 // ROUTES
 app.use("/api/v1/coffee", coffeeRouter);
 
-
 // 404 NOT FOUND
 app.all("*", (req, res, next) => {
-    next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
+  next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
 });
 
 // GLOBAL ERROR HANDLING (must be implemented)
-
 module.exports = app;

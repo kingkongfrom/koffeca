@@ -3,7 +3,7 @@ import { Fragment, useEffect, useState } from "react";
 import Logo from "./Logo.jsx";
 import { Link, NavLink } from "react-router-dom";
 import { FaBars, FaRegUserCircle } from "react-icons/fa";
-import { FaX } from "react-icons/fa6";
+import { FaMagnifyingGlass, FaX } from "react-icons/fa6";
 
 const Navigation = ({ color, backgroundColor }) => {
     const isMobile = useIsMobile();
@@ -45,7 +45,7 @@ const Navigation = ({ color, backgroundColor }) => {
 
             <button
                 onClick={toggleMobileMenu}
-                className={`z-50 block md:hidden ${showMobileMenu ? "hidden" : ""}`}
+                className={`z-40 block md:hidden ${showMobileMenu ? "hidden" : ""}`}
             >
                 <FaBars size={30} />
             </button>
@@ -53,7 +53,7 @@ const Navigation = ({ color, backgroundColor }) => {
             {showMobileMenu && isMobile && (
                 <div
                     className="bg-colorPrimary fixed right-0 top-0 z-50 flex min-h-screen w-full translate-x-0
-                     transform items-center justify-center bg-stone-800 bg-opacity-50 font-serif
+                     transform items-center justify-center bg-stone-800 bg-opacity-50
                      shadow-lg backdrop-blur-lg"
                 >
                     <div className="mb-[150px] flex flex-col gap-4 text-center">
@@ -64,14 +64,14 @@ const Navigation = ({ color, backgroundColor }) => {
                             }`}
                             onClick={closeMobileMenu}
                         >
-                            Inicio
+                            INICIO
                         </NavLink>
                         <NavLink
                             to="/store"
                             className={`text-2xl ${showMobileMenu ? "opacity-100" : "opacity-0"}`}
                             onClick={closeMobileMenu}
                         >
-                            Tienda
+                            TIENDA
                         </NavLink>
                         <NavLink
                             to="/varieties"
@@ -80,7 +80,7 @@ const Navigation = ({ color, backgroundColor }) => {
                             }`}
                             onClick={closeMobileMenu}
                         >
-                            Variedades
+                            VARIEDADES
                         </NavLink>
                         <NavLink
                             to="/admin"
@@ -89,7 +89,7 @@ const Navigation = ({ color, backgroundColor }) => {
                             }`}
                             onClick={closeMobileMenu}
                         >
-                            Cuenta
+                            CUENTA
                         </NavLink>
                     </div>
 
@@ -103,18 +103,20 @@ const Navigation = ({ color, backgroundColor }) => {
             )}
             {!isMobile && (
                 <Fragment>
-                    <div className="text-md flex gap-24 font-serif">
+                    <div className="text-md flex gap-24 font-sans">
                         <NavLink to="/" className="">
-                            Inicio
+                            INICIO
                         </NavLink>
                         <NavLink to="/store" className="">
-                            Tienda
+                            TIENDA
                         </NavLink>
                         <NavLink to="/varieties" className="">
-                            Variedades
+                            PRODUCTORES
                         </NavLink>
                     </div>
-                    <div>
+                    <div className="flex gap-12 pr-4">
+                        <FaMagnifyingGlass size={20} />
+
                         <NavLink to="/admin" className="text-lg">
                             <FaRegUserCircle
                                 size={20}
