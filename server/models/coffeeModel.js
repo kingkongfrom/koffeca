@@ -30,7 +30,7 @@ const coffeeSchema = new mongoose.Schema({
     ],
   },
   price: {
-    type: Number,
+    type: String,
     required: [true, "A coffee must have a price"],
   },
   grinding: {

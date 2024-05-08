@@ -22,7 +22,25 @@ const FrontStorePage = () => {
     // Calculate price range for each unique product
     const productsWithPriceRange = Object.entries(groupedByName).map(
         ([name, products]) => {
-            const prices = products.map((product) => product.price);
+            const prices = products
+                .map((product) => {
+                    const parsedPrice = parseFloat(
+                        product.price.replace(/[^\d.]/g, ""),
+                    );
+                    if (isNaN(parsedPrice)) {
+                        console.error(
+                            "Price is not a valid number:",
+                            product.price,
+                        );
+                        return null; // Return null if price is not a valid number
+                    }
+                    return parsedPrice;
+                })
+                .filter((price) => price !== null); // Filter out null prices
+            if (prices.length === 0) {
+                console.error("No valid prices found for product:", name);
+                return { name, priceRange: [0, 0] }; // Return default price range if no valid prices found
+            }
             const minPrice = Math.min(...prices);
             const maxPrice = Math.max(...prices);
             return { name, priceRange: [minPrice, maxPrice] };

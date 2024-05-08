@@ -2,7 +2,8 @@ import ProductRow from "./ProductRow.jsx";
 import { formatPrice } from "../../../utils/formatPrice.js";
 import { capitalize } from "../../../utils/capitalize.js";
 import { filterKeys } from "../../../utils/filterKeys.js";
-import { createUniqueMap } from "../../../utils/createUniqueMap.js"; // Adjust the path as needed
+import { createUniqueMap } from "../../../utils/createUniqueMap.js";
+import { Fragment } from "react"; // Adjust the path as needed
 
 const ProductTable = ({ data }) => {
     if (!data || data.length === 0) {
@@ -31,15 +32,15 @@ const ProductTable = ({ data }) => {
 
     return (
         <div className="">
-            <table>
+            <table className="w-full">
                 <thead>
                     <tr>
                         <th>Image</th>
                         {/* Render table headers */}
                         {keys.map((key) => (
-                            <th key={key} className="">
-                                {capitalize(key)}
-                            </th>
+                            <Fragment>
+                                <th key={key}>{capitalize(key)}</th>
+                            </Fragment>
                         ))}
                     </tr>
                 </thead>

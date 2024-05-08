@@ -45,14 +45,14 @@ const Navigation = ({ color, backgroundColor }) => {
 
             <button
                 onClick={toggleMobileMenu}
-                className={`z-40 block md:hidden ${showMobileMenu ? "hidden" : ""}`}
+                className={`z-20 block md:hidden ${showMobileMenu ? "hidden" : ""}`}
             >
                 <FaBars size={30} />
             </button>
 
             {showMobileMenu && isMobile && (
                 <div
-                    className="bg-colorPrimary fixed right-0 top-0 z-50 flex min-h-screen w-full translate-x-0
+                    className="bg-colorPrimary fixed right-0 top-0 z-20 flex min-h-screen w-full translate-x-0
                      transform items-center justify-center bg-stone-800 bg-opacity-50
                      shadow-lg backdrop-blur-lg"
                 >

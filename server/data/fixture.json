@@ -1,11 +1,11 @@
 [
   {
-    "name": "Cafe Roble Sabana Geisha",
-    "producer": "Roble Sabana",
+    "name": "Cafe Roblesabana Geisha",
+    "producer": "Roblesabana",
     "variety": "Geisha",
     "roast": "MEDIO",
     "weight": "340g",
-    "price": 12000,
+    "price": "₡12 000",
     "grinding": "GRANO ENTERO",
     "region": "VALLE ORIENTAL",
     "process": "RED HONEY",
@@ -19,12 +19,12 @@
     ]
   },
   {
-    "name": "Cafe Roble Sabana Caturra-Catuai",
-    "producer": "Roble Sabana",
+    "name": "Cafe Roblesabana Caturra-Catuai",
+    "producer": "Roblesabana",
     "variety": "Caturra-Catuai",
     "roast": "MEDIO",
     "weight": "340g",
-    "price": 7000,
+    "price": "₡6 500",
     "grinding": "GRANO ENTERO",
     "region": "TARRAZU",
     "process": "NATURAL",
@@ -38,12 +38,12 @@
     ]
   },
   {
-    "name": "Cafe Roble Sabana Caturra-Catuai",
+    "name": "Cafe Roblesabana Caturra-Catuai",
     "producer": "Roble Sabana",
     "variety": "Caturra-Catuai",
     "roast": "MEDIO",
     "weight": "340g",
-    "price": 6500,
+    "price": "₡6 500",
     "grinding": "GRANO ENTERO",
     "region": "VALLE CENTRAL",
     "process": "NATURAL",
@@ -57,12 +57,12 @@
     ]
   },
   {
-    "name": "Cafe Roble Sabana Caturra-Catuai",
+    "name": "Cafe Roblesabana Caturra-Catuai",
     "producer": "Roble Sabana",
     "variety": "Caturra-Catuai",
     "roast": "MEDIO",
     "weight": "500g",
-    "price": 13000,
+    "price": "₡13 000",
     "grinding": "GRANO ENTERO",
     "region": "VALLE CENTRAL",
     "process": "NATURAL",

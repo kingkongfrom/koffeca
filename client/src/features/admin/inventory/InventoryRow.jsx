@@ -20,7 +20,7 @@ const InventoryRow = ({ data, keys, formatPrice, className }) => {
             </td>
             {/* Render remaining table cells with data */}
             {keys.map((key, index) => (
-                <td key={index} className="px-4">
+                <td key={index} className=" px-6">
                     {key === "price"
                         ? formatPrice(data[key])
                         : capitalizeUppercase(data[key])}

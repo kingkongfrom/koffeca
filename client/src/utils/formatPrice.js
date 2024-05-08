@@ -1,6 +1,6 @@
 export const formatPrice = (price) => {
     // Check if the input is not a number
-    if (typeof price !== "number") {
+    if (typeof price !== "string") {
         console.error(
             "Input is not a number. Received:",
             price,

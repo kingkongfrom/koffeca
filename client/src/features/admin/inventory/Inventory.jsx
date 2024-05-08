@@ -1,13 +1,12 @@
 import { useLoaderData, useNavigation } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import InventoryTable from "./InventoryTable.jsx";
 import Spinner from "../../../ui/Spinner.jsx";
-import { useEffect, useRef, useState } from "react";
 
 const Inventory = () => {
     const { coffee } = useLoaderData() || { coffee: [] };
     const navigation = useNavigation();
     const [width, setWidth] = useState(0);
-
     const inventoryDivRef = useRef(null);
 
     useEffect(() => {
@@ -23,16 +22,18 @@ const Inventory = () => {
             </div>
 
             <div
-                className="border-gray-150 bg-base-bone flex h-12 w-full min-w-[205px] items-center justify-end
-                rounded-t-lg border-l border-r border-t px-2.5"
+                className="border-gray-150 flex h-12 w-full min-w-[205px] items-center justify-end rounded-t-lg
+                border-l border-r border-t bg-base-bone px-2.5"
                 style={{ width: `${width}px` }}
             ></div>
             <div
                 ref={inventoryDivRef}
-                className="border-lg border-gray-150 inline-block rounded-b-lg border "
+                className="border-lg border-gray-150 inline-block overflow-x-auto rounded-b-lg border"
             >
                 {navigation.state === "loading" ? (
-                    <Spinner />
+                    <div className="flex items-center justify-center">
+                        <Spinner />
+                    </div>
                 ) : (
                     <InventoryTable data={coffee} />
                 )}
@@ -40,4 +41,5 @@ const Inventory = () => {
         </div>
     );
 };
+
 export default Inventory;

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 
-const DragAndDrop = () => {
+const DragAndDrop = ({ handleImageDrop }) => {
     const [droppedImages, setDroppedImages] = useState([]);
-    console.log(droppedImages);
-
     const handleDrop = (e) => {
         e.preventDefault();
         const files = Array.from(e.dataTransfer.files);
@@ -39,6 +37,7 @@ const DragAndDrop = () => {
 
         Promise.all(imagePromises).then((images) => {
             setDroppedImages([...droppedImages, ...images]);
+            handleImageDrop([...droppedImages, ...images]); // Update parent state
         });
     };
 
@@ -46,6 +45,7 @@ const DragAndDrop = () => {
         const newImages = [...droppedImages];
         newImages.splice(index, 1);
         setDroppedImages(newImages);
+        handleImageDrop(newImages); // Update parent state
     };
 
     return (

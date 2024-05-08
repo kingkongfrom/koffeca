@@ -2,7 +2,7 @@ const Modal = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-10 overflow-y-auto">
+        <div className="fixed inset-0 z-40 overflow-y-auto">
             <div className="flex min-h-screen items-center justify-center pb-20 text-center sm:block sm:p-0">
                 <div
                     className="fixed inset-0 transition-opacity"
