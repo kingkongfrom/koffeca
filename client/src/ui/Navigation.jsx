@@ -74,13 +74,13 @@ const Navigation = ({ color, backgroundColor }) => {
                             TIENDA
                         </NavLink>
                         <NavLink
-                            to="/varieties"
+                            to="/accessories"
                             className={`text-2xl ${
                                 showMobileMenu ? "opacity-100" : "opacity-0"
                             }`}
                             onClick={closeMobileMenu}
                         >
-                            VARIEDADES
+                            ACCESORIOS
                         </NavLink>
                         <NavLink
                             to="/admin"
@@ -110,8 +110,8 @@ const Navigation = ({ color, backgroundColor }) => {
                         <NavLink to="/store" className="">
                             TIENDA
                         </NavLink>
-                        <NavLink to="/varieties" className="">
-                            PRODUCTORES
+                        <NavLink to="/accessories" className="">
+                            ACCESORIOS
                         </NavLink>
                     </div>
                     <div className="flex gap-12 pr-4">

@@ -5,7 +5,6 @@ import { createUniqueMap } from "../../../utils/createUniqueMap.js";
 import InventoryRow from "./InventoryRow.jsx";
 
 const InventoryTable = ({ data }) => {
-    console.log(data);
     if (!data || data.length === 0 || !Array.isArray(data)) {
         return <div className="min-w-[205px]">No data available</div>;
     }
@@ -17,6 +16,7 @@ const InventoryTable = ({ data }) => {
         "sku",
         "images",
         "available",
+        "slug",
     ];
 
     const keys = filterKeys(data, excludedKeys);
@@ -33,11 +33,13 @@ const InventoryTable = ({ data }) => {
         <div className=" ">
             <table className="w-full">
                 <thead>
-                    <tr className="">
+                    <tr>
                         <th>Image</th>
                         {/* Render table headers */}
                         {keys.map((key) => (
-                            <th key={key}>{capitalize(key)}</th>
+                            <th key={key} className="py-2">
+                                {capitalize(key)}
+                            </th>
                         ))}
                     </tr>
                 </thead>

@@ -1,9 +1,8 @@
-import ProductRow from "./ProductRow.jsx";
 import { formatPrice } from "../../../utils/formatPrice.js";
 import { capitalize } from "../../../utils/capitalize.js";
 import { filterKeys } from "../../../utils/filterKeys.js";
 import { createUniqueMap } from "../../../utils/createUniqueMap.js";
-import { Fragment } from "react"; // Adjust the path as needed
+import InventoryRow from "../inventory/InventoryRow.jsx";
 
 const ProductTable = ({ data }) => {
     if (!data || data.length === 0) {
@@ -18,6 +17,7 @@ const ProductTable = ({ data }) => {
         "sku",
         "images",
         "available",
+        "slug",
     ];
     const keys = filterKeys(data, excludedKeys);
 
@@ -31,30 +31,30 @@ const ProductTable = ({ data }) => {
     const uniqueProductsArray = Array.from(uniqueProducts.values());
 
     return (
-        <div className="">
+        <div className=" ">
             <table className="w-full">
                 <thead>
                     <tr>
                         <th>Image</th>
                         {/* Render table headers */}
                         {keys.map((key) => (
-                            <Fragment>
-                                <th key={key}>{capitalize(key)}</th>
-                            </Fragment>
+                            <th key={key} className="py-2">
+                                {capitalize(key)}
+                            </th>
                         ))}
                     </tr>
                 </thead>
                 <tbody>
                     {/* Render table rows for unique products */}
                     {uniqueProductsArray.map((item, index) => (
-                        <ProductRow
+                        <InventoryRow
                             key={index}
                             data={item}
                             keys={keys}
+                            formatPrice={formatPrice}
                             className={
                                 index % 2 === 0 ? "bg-stone-100" : "bg-white"
                             }
-                            formatPrice={formatPrice} // Pass the formatPrice function as a prop
                         />
                     ))}
                 </tbody>

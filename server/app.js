@@ -7,7 +7,13 @@ const cors = require("cors");
 const app = express();
 app.use(express.json());
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*", // Allow requests from any origin (for development)
+    methods: "GET,POST", // Allow only specified HTTP methods
+    allowedHeaders: "Content-Type,Authorization", // Allow only specified headers
+  }),
+);
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));

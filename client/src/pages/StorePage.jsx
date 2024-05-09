@@ -1,9 +1,10 @@
 import React from "react";
 import { getAllCoffee } from "../services/apiCoffee.js";
 import Card from "../ui/Card.jsx";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 
-const FrontStorePage = () => {
+const StorePage = () => {
+    const navigation = useNavigation();
     const { coffee } = useLoaderData() || { coffee: [] }; // Ensure coffee is initialized
 
     // Ensure coffee is an array before further processing
@@ -50,7 +51,8 @@ const FrontStorePage = () => {
     // Render unique items
     return (
         <div className="flex w-full items-center justify-center">
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:max-w-[1400px] md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
+            <div className="grid grid-cols-1 gap-16 pb-10 sm:grid-cols-2 md:max-w-[1400px] md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
+                {navigation.state === "loading"}
                 {productsWithPriceRange.map((product) => (
                     <div key={product.name}>
                         <Card
@@ -74,4 +76,4 @@ export const loader = async () => {
     }
 };
 
-export default FrontStorePage;
+export default StorePage;

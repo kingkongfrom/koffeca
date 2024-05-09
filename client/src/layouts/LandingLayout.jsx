@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Hero from "../ui/Hero.jsx";
+import Footer from "../ui/Footer.jsx";
 
 function Header() {
     return null;
@@ -14,6 +15,7 @@ const LandingLayout = () => {
                     <Outlet />
                 </main>
             </div>
+            <Footer />
         </div>
     );
 };

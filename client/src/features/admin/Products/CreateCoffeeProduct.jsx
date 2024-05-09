@@ -130,10 +130,6 @@ const CreateCoffeeProduct = () => {
             // navigate('/success');
         } catch (error) {
             console.error("Error submitting form data:", error.message);
-            // Handle error (e.g., display error message to user)
-            // You can display the error message to the user using an alert or by updating state to show error message in the UI
-            // For example:
-            // setError(error.message);
         }
     };
 

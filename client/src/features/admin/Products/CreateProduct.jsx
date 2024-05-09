@@ -1,8 +1,11 @@
-import { Form } from "react-router-dom";
-import React, { Fragment, useState } from "react";
 import { FaXmark } from "react-icons/fa6";
 import DragAndDrop from "../../../ui/DragAndDrop.jsx";
 import { capitalizeUppercase } from "../../../utils/capitalizeUppercase.js";
+import { Form } from "react-router-dom";
+import { Fragment, useState } from "react";
+import supabase from "../../../services/supabase.js";
+
+const supabaseUrl = "https://tferhpantilxkusofrfv.supabase.co";
 
 const roast = ["CLARO", "MEDIO", "OSCURO"];
 const weight = ["200g", "340g", "500g"];
@@ -21,6 +24,7 @@ const process = ["LAVADO", "NATURAL", "HONEY", "RED HONEY"];
 
 const CreateProduct = ({ onClose }) => {
     const [formData, setFormData] = useState({
+        name: "",
         producer: "",
         variety: "",
         roast: "",
@@ -32,7 +36,7 @@ const CreateProduct = ({ onClose }) => {
         description: "",
         taste: "",
         quantity: 1,
-        images: [], // Assuming images will be stored in an array
+        images: [], // Array to store image URLs
     });
 
     // Function to handle form field changes
@@ -46,20 +50,11 @@ const CreateProduct = ({ onClose }) => {
         });
     };
 
-    // Function to handle quantity change
     const handleQuantityChange = (e) => {
         const newQuantity = parseInt(e.target.value, 10);
         setFormData({
             ...formData,
             quantity: newQuantity,
-        });
-    };
-
-    // Function to handle image drop
-    const handleImageDrop = (images) => {
-        setFormData({
-            ...formData,
-            images: images,
         });
     };
 
@@ -79,38 +74,138 @@ const CreateProduct = ({ onClose }) => {
         }).format(parseInt(numericValue, 10));
     };
 
-    // Function to handle form submission
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleImageDrop = async (files) => {
+        const imageUrls = [];
+        console.log("Uploading files:", files);
         try {
-            // Call the action function to submit formData
-            const result = await action({ request: formData });
-            // Check the result and handle accordingly
-            if (result.success) {
-                console.log("Form submitted successfully:", result.data); // You can access any data returned by the action
-                // Reset specific form fields after successful submission
-                setFormData({
-                    ...formData,
-                    producer: "",
-                    variety: "",
-                    roast: "",
-                    weight: "",
-                    grinding: "",
-                    price: "",
-                    region: "",
-                    process: "",
-                    description: "",
-                    taste: "",
-                    quantity: 1,
-                    images: [],
-                });
-            } else {
-                console.error("Form submission failed:", result.error);
+            for (const file of files) {
+                // Decode the base64-encoded image data
+                const imageData = atob(file.data.split(",")[1]);
+                const byteArray = new Uint8Array(imageData.length);
+                for (let i = 0; i < imageData.length; i++) {
+                    byteArray[i] = imageData.charCodeAt(i);
+                }
+                const blob = new Blob([byteArray], { type: "image/png" });
+
+                const { data, error } = await supabase.storage
+                    .from("coffee")
+                    .upload(file.name, blob, {
+                        cacheControl: "3600",
+                        upsert: false,
+                        contentType: "image/png",
+                    });
+
+                if (error) {
+                    console.error("Error uploading file:", error.message);
+                } else {
+                    console.log("Uploaded image data:", data);
+                    const imageUrl = `${supabaseUrl}/storage/v1/object/public/coffee/${data.path}`;
+                    imageUrls.push(imageUrl);
+
+                    console.log("Image array:", imageUrls);
+                }
             }
+            console.log("Image array set in state:", imageUrls);
+
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                images: imageUrls,
+            }));
         } catch (error) {
-            console.error("Error submitting form:", error);
+            console.error("Error handling image drop:", error.message);
         }
     };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const url = "http://localhost:3000/api/v1/coffee";
+        const name = `${formData.producer} ${formData.variety}`;
+
+        try {
+            // Validate form data before submission
+            const isFormValid = validateFormData(formData);
+            if (!isFormValid) {
+                // Handle invalid form data (e.g., display error message to user)
+                console.error("Form data is invalid.");
+                return;
+            }
+
+            // Upload images and get their URLs
+            const imageUrls = formData.images;
+            console.log("boom?", imageUrls);
+
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    name: name,
+                    images: imageUrls, // Include the image URLs in the JSON body
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to submit form");
+            }
+
+            // Optionally handle success response
+            const data = await response.json();
+            console.log("Form submitted successfully:", data);
+
+            // Clear the form after successful submission
+            resetFormData();
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            // Optionally handle error state or display error message to the user
+        }
+    };
+
+    // Function to validate form data
+    const validateFormData = (formData) => {
+        // Check if all required fields are present and non-empty
+        const requiredFields = [
+            "producer",
+            "variety",
+            "roast",
+            "weight",
+            "grinding",
+            "price",
+            "region",
+            "process",
+            "description",
+            "taste",
+            "quantity",
+            "images",
+        ];
+        for (const field of requiredFields) {
+            if (!formData[field]) {
+                return false; // Validation failed
+            }
+        }
+        return true; // Validation passed
+    };
+
+    // Function to reset form data after successful submission
+    const resetFormData = () => {
+        setFormData({
+            producer: "",
+            variety: "",
+            roast: "",
+            weight: "",
+            grinding: "",
+            price: "",
+            region: "",
+            process: "",
+            description: "",
+            taste: "",
+            quantity: 1,
+            images: [],
+        });
+    };
+
     return (
         <div className="z-50">
             <div className="text-md flex h-12 w-full items-center justify-between bg-base-bone font-semibold">

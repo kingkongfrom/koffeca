@@ -11,7 +11,7 @@
     "process": "RED HONEY",
     "description": "Producido con pasión y cuidado por Roble Sabana, este café encarna el espíritu de la región de TARRAZU en Costa Rica. La combinación de las variedades Caturra y Catuai en esta mezcla es el resultado de años de experiencia y dedicación al arte del cultivo del café. Cada grano ha sido meticulosamente procesado utilizando el método natural, conservando la esencia única de las cerezas de café.",
     "taste": "Sabor floral con acidez media y cuerpo suave",
-    "sku": "ROBLE-SABANA-GEISHA",
+    "sku": "ROBLESABANA-GEISHA",
     "quantity": 50,
     "images": [
       "https://tferhpantilxkusofrfv.supabase.co/storage/v1/object/public/coffee/roble-sabana-geisha-front4.jpg?t=2024-05-04T12%3A53%3A23.170Z",
@@ -30,7 +30,7 @@
     "process": "NATURAL",
     "description": "Producido con pasión y cuidado por Roble Sabana, este café encarna el espíritu de la región de TARRAZU en Costa Rica. La combinación de las variedades Caturra y Catuai en esta mezcla es el resultado de años de experiencia y dedicación al arte del cultivo del café. Cada grano ha sido meticulosamente procesado utilizando el método natural, conservando la esencia única de las cerezas de café.",
     "taste": "Sabor floral con acidez media y cuerpo suave",
-    "sku": "ROBLE-SABANA-TARRAZU",
+    "sku": "ROBLESABANA-TARRAZU",
     "quantity": 50,
     "images": [
       "https://tferhpantilxkusofrfv.supabase.co/storage/v1/object/public/coffee/roble-sabana-tarrazu-fron.png?t=2024-05-03T02%3A25%3A48.693Z",
@@ -39,7 +39,7 @@
   },
   {
     "name": "Cafe Roblesabana Caturra-Catuai",
-    "producer": "Roble Sabana",
+    "producer": "Roblesabana",
     "variety": "Caturra-Catuai",
     "roast": "MEDIO",
     "weight": "340g",
@@ -49,7 +49,7 @@
     "process": "NATURAL",
     "description": "Producido con pasión y cuidado por Roble Sabana, este café encarna el espíritu de la región de TARRAZU en Costa Rica. La combinación de las variedades Caturra y Catuai en esta mezcla es el resultado de años de experiencia y dedicación al arte del cultivo del café. Cada grano ha sido meticulosamente procesado utilizando el método natural, conservando la esencia única de las cerezas de café.",
     "taste": "Sabor floral con acidez media y cuerpo suave.",
-    "sku": "ROBLE-SABANA-TARRAZU",
+    "sku": "ROBLESABANA-TARRAZU",
     "quantity": 50,
     "images": [
       "https://tferhpantilxkusofrfv.supabase.co/storage/v1/object/public/coffee/roble-sabana-poas-front.png?t=2024-05-04T03%3A41%3A50.357Z",
@@ -58,7 +58,7 @@
   },
   {
     "name": "Cafe Roblesabana Caturra-Catuai",
-    "producer": "Roble Sabana",
+    "producer": "Roblesabana",
     "variety": "Caturra-Catuai",
     "roast": "MEDIO",
     "weight": "500g",
@@ -68,7 +68,7 @@
     "process": "NATURAL",
     "description": "Producido con pasión y cuidado por Roble Sabana, este café encarna el espíritu de la región de TARRAZU en Costa Rica. La combinación de las variedades Caturra y Catuai en esta mezcla es el resultado de años de experiencia y dedicación al arte del cultivo del café. Cada grano ha sido meticulosamente procesado utilizando el método natural, conservando la esencia única de las cerezas de café.",
     "taste": "Sabor floral con acidez media y cuerpo suave",
-    "sku": "ROBLE-SABANA-TARRAZU",
+    "sku": "ROBLESABANA-TARRAZU",
     "quantity": 50,
     "images": [
       "https://tferhpantilxkusofrfv.supabase.co/storage/v1/object/public/coffee/roble-sabana-poas-front.png?t=2024-05-04T03%3A41%3A50.357Z",

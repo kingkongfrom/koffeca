@@ -3,18 +3,16 @@ import LandingLayout from "./layouts/LandingLayout";
 import LandingPage from "./pages/LandingPage";
 import Error from "./ui/Error";
 import StoreLayout from "./layouts/StoreLayout";
-import FrontStorePage, { loader as coffeeLoader } from "./pages/FrontStorePage";
+import StorePage, { loader as coffeeLoader } from "./pages/StorePage.jsx";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminPage from "./pages/AdminPage";
 import Dashboard from "./features/admin/Dashboard";
 import Inventory from "./features/admin/inventory/Inventory";
 import Products from "./features/admin/Products/Products";
 import Settings from "./features/admin/Settings";
-import ProducersPage from "./pages/ProducersPage";
+import AccessoriesPage from "./pages/AccessoriesPage.jsx";
 import AppLayout from "./layouts/AppLayout";
-import CreateProduct, {
-    action as createProduct,
-} from "./features/admin/Products/CreateProduct";
+import { action as createProduct } from "./features/admin/Products/CreateProduct";
 
 function App() {
     const router = createBrowserRouter([
@@ -26,7 +24,7 @@ function App() {
         {
             element: <AppLayout />,
             errorElement: <Error />,
-            children: [{ path: "/varieties", element: <ProducersPage /> }],
+            children: [{ path: "/accessories", element: <AccessoriesPage /> }],
         },
         {
             element: <StoreLayout />,
@@ -35,7 +33,7 @@ function App() {
                 {
                     path: "/store",
                     loader: coffeeLoader,
-                    element: <FrontStorePage />,
+                    element: <StorePage />,
                 },
             ],
         },
@@ -56,13 +54,8 @@ function App() {
                         {
                             path: "products",
                             loader: coffeeLoader,
-                            element: <Products />,
-                        },
-                        {
-                            path: "product/new",
-                            loader: coffeeLoader,
                             action: createProduct,
-                            element: <CreateProduct />,
+                            element: <Products />,
                         },
                         { path: "settings", element: <Settings /> },
                     ],

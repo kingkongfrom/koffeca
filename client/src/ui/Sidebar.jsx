@@ -1,5 +1,5 @@
 import { useIsMobile } from "../hooks/useIsMobile.js";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
     const isMobile = useIsMobile();
@@ -19,11 +19,10 @@ const Sidebar = () => {
             <ul className="flex flex-col divide-y divide-stone-300">
                 {navItems.map((item, index) => (
                     <li key={index}>
-                        <Link
+                        <NavLink
                             to={item.path}
                             className={`flex cursor-pointer justify-center py-4 tracking-wide 
-                            transition-colors duration-300 md:justify-start md:px-7 
-                            ${location.pathname === item.path ? "bg-stone-100" : ""}`}
+                            transition-colors duration-300 md:justify-start md:px-7 ${location.pathname === item.path ? "bg-stone-100" : ""}`}
                         >
                             {!isMobile ? (
                                 item.name
@@ -32,7 +31,7 @@ const Sidebar = () => {
                                     {item.name}
                                 </span>
                             )}
-                        </Link>
+                        </NavLink>
                     </li>
                 ))}
             </ul>

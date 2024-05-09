@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const slugify = require("slugify");
 
 const coffeeSchema = new mongoose.Schema({
   name: {
@@ -92,16 +93,31 @@ const coffeeSchema = new mongoose.Schema({
   },
   sku: {
     type: String,
-    required: [true, "SKU is required."],
+    // required: [true, "SKU is required."],
   },
   images: {
     type: [String], // Array of strings
     required: [true, "At least one image is required."], // Ensure at least one image is required
   },
+  slug: {
+    type: String,
+    unique: true, // Ensure the slug is unique
+  },
 });
 
 coffeeSchema.pre("save", function (next) {
   this.available = this.quantity > 0;
+  next();
+});
+
+coffeeSchema.pre("save", function (next) {
+  this.slug = slugify(this.name, { lower: true });
+
+  next();
+});
+
+coffeeSchema.pre("save", function (next) {
+  this.name = `Coffee ${this.producer} ${this.variety}`;
   next();
 });
 
