@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: "*", // Allow requests from any origin (for development)
-    methods: "GET,POST", // Allow only specified HTTP methods
+    methods: "GET,POST, DELETE, PUT", // Allow only specified HTTP methods
     allowedHeaders: "Content-Type,Authorization", // Allow only specified headers
   }),
 );

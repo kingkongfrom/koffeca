@@ -1,6 +1,6 @@
 import Navigation from "../ui/Navigation.jsx";
 import Sidebar from "../ui/Sidebar.jsx";
-import Search from "../features/admin/Search.jsx";
+import Search from "../ui/Search.jsx";
 import AdminFooter from "../features/admin/AdminFooter.jsx";
 import { Outlet } from "react-router-dom";
 

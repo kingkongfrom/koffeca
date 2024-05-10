@@ -8,3 +8,32 @@
 h1, h2, h3, h4, h5, h6, p, li {
     color: #3f3f46;
 }
+
+.tooltip {
+    position: absolute;
+    bottom: 28px; /* Adjust as needed */
+    right: -20px; /* Adjust as needed */
+    width: 90px; /* Adjust as needed */
+}
+
+.tooltip-content {
+    background-color: white; /* Tooltip background color */
+    color: black; /* Tooltip text color */
+    padding: 10px; /* Tooltip padding */
+    border-radius: 4px; /* Tooltip border radius */
+    border: 1px solid #596564; /* Tooltip border color */
+    position: relative;
+}
+
+.tooltip-content::before {
+    content: "";
+    position: absolute;
+    top: 100%; /* Position triangle at the bottom of the tooltip */
+    right: 32%;
+    margin-right: -5px; /* Adjust to center the triangle */
+    border-width: 7px;
+    border-style: solid;
+    border-color: #596564 transparent transparent transparent; /* Triangle color */
+    border-bottom-width: 0; /* Hide bottom border of the triangle */
+}
+

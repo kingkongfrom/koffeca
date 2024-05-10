@@ -1,6 +1,6 @@
 import { capitalizeUppercase } from "../../../utils/capitalizeUppercase.js";
 import React from "react";
-import EditButton from "../../../ui/EditButton.jsx";
+import OptionsButton from "../../../ui/OptionsButton.jsx";
 
 const InventoryRow = ({ data, keys, formatPrice, className }) => {
     return (
@@ -20,14 +20,17 @@ const InventoryRow = ({ data, keys, formatPrice, className }) => {
             </td>
             {/* Render remaining table cells with data */}
             {keys.map((key, index) => (
-                <td key={index} className=" px-6">
+                <td
+                    key={index}
+                    className={key === "image" ? "p-0" : "min-w-24 px-6"}
+                >
                     {key === "price"
                         ? formatPrice(data[key])
                         : capitalizeUppercase(data[key])}
                 </td>
             ))}
-            <td>
-                <EditButton />
+            <td className="px-5">
+                <OptionsButton />
             </td>
         </tr>
     );

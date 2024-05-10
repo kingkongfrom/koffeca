@@ -18,20 +18,18 @@ const Products = () => {
         <div className="font-[lato]">
             {navigation.state === "loading"}
 
-            <div className="mb-2 px-3 pt-3">
-                <h1 className="text-xl">Product overview</h1>
-            </div>
-
             <div className="border-lg border-gray-150 inline-block overflow-x-auto rounded-b-lg border">
                 <div
-                    className="border-gray-150 flex h-12 w-full min-w-[205px] items-center justify-end rounded-t-lg
-                                    border-l border-r border-t bg-base-bone px-2.5"
+                    className="border-gray-150 flex h-12  w-full min-w-[205px] items-center justify-end  rounded-t-lg
+                                border-l border-r border-t bg-base-bone px-2.5"
                 >
                     <button
-                        className="rounded-full text-base-darb-dark-brown transition-colors duration-300 hover:text-base-khaki"
+                        className="text-md p-2  text-base-feldgrau transition-colors duration-300 hover:text-stone-900"
                         onClick={toggleModal}
                     >
-                        <FaPlus size={20} />
+                        <span className="flex items-center justify-center gap-2">
+                            <FaPlus size={20} />
+                        </span>
                     </button>
                 </div>
                 <div>

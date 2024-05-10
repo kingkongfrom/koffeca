@@ -2,12 +2,15 @@ import { capitalize } from "../../../utils/capitalize.js";
 import { formatPrice } from "../../../utils/formatPrice.js";
 import { filterKeys } from "../../../utils/filterKeys.js";
 import { createUniqueMap } from "../../../utils/createUniqueMap.js";
-import InventoryRow from "./InventoryRow.jsx";
+import { useIsMobile } from "../../../hooks/useIsMobile.js";
+import ProductRow from "../Products/ProductRow.jsx";
 
 const InventoryTable = ({ data }) => {
-    if (!data || data.length === 0 || !Array.isArray(data)) {
+    const isMobile = useIsMobile();
+    if (!data || data.length === 0) {
         return <div className="min-w-[205px]">No data available</div>;
     }
+
     const excludedKeys = [
         "_id",
         "description",
@@ -21,6 +24,7 @@ const InventoryTable = ({ data }) => {
 
     const keys = filterKeys(data, excludedKeys);
 
+    // Filter out repeated products based on name and weight
     const uniqueProducts = createUniqueMap(
         data,
         (item) => `${item.name}-${item.weight}`,
@@ -34,7 +38,7 @@ const InventoryTable = ({ data }) => {
             <table className="w-full">
                 <thead>
                     <tr>
-                        <th>Image</th>
+                        <th className="">Image</th>
                         {/* Render table headers */}
                         {keys.map((key) => (
                             <th key={key} className="py-2">
@@ -46,14 +50,12 @@ const InventoryTable = ({ data }) => {
                 <tbody>
                     {/* Render table rows for unique products */}
                     {uniqueProductsArray.map((item, index) => (
-                        <InventoryRow
+                        <ProductRow
                             key={index}
                             data={item}
                             keys={keys}
                             formatPrice={formatPrice}
-                            className={
-                                index % 2 === 0 ? "bg-stone-100" : "bg-white"
-                            }
+                            className={`${index % 2 === 0 ? "bg-stone-100" : "bg-white"}`}
                         />
                     ))}
                 </tbody>

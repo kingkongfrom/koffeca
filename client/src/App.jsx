@@ -6,7 +6,7 @@ import StoreLayout from "./layouts/StoreLayout";
 import StorePage, { loader as coffeeLoader } from "./pages/StorePage.jsx";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminPage from "./pages/AdminPage";
-import Dashboard from "./features/admin/Dashboard";
+import Dashboard from "./features/admin/dashboard/Dashboard.jsx";
 import Inventory from "./features/admin/inventory/Inventory";
 import Products from "./features/admin/Products/Products";
 import Settings from "./features/admin/Settings";
@@ -56,6 +56,10 @@ function App() {
                             loader: coffeeLoader,
                             action: createProduct,
                             element: <Products />,
+                        },
+                        {
+                            path: "products/:id",
+                            loader: coffeeLoader,
                         },
                         { path: "settings", element: <Settings /> },
                     ],

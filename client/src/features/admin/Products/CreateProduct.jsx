@@ -1,7 +1,7 @@
 import { FaXmark } from "react-icons/fa6";
 import DragAndDrop from "../../../ui/DragAndDrop.jsx";
 import { capitalizeUppercase } from "../../../utils/capitalizeUppercase.js";
-import { Form } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { Fragment, useState } from "react";
 import supabase from "../../../services/supabase.js";
 
@@ -23,6 +23,7 @@ const region = [
 const process = ["LAVADO", "NATURAL", "HONEY", "RED HONEY"];
 
 const CreateProduct = ({ onClose }) => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: "",
         producer: "",
@@ -161,6 +162,7 @@ const CreateProduct = ({ onClose }) => {
             console.error("Error submitting form:", error);
             // Optionally handle error state or display error message to the user
         }
+        navigate("admin/products");
     };
 
     // Function to validate form data

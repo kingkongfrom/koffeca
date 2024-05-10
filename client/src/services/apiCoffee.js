@@ -15,3 +15,14 @@ export const getAllCoffee = async () => {
         throw error; // Re-throw the error to propagate it to the caller
     }
 };
+
+export const deleteCoffee = async (coffeeId) => {
+    try {
+        const res = await fetch(`${API_URL}/${coffeeId}`, {
+            method: "DELETE",
+        });
+        if (!res.ok) {
+            throw new Error("Failed to delete coffee product");
+        }
+    } catch (error) {}
+};
